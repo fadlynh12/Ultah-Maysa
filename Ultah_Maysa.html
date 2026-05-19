@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Sayangnya Akuu ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #ffc0cb, #ffe4ec);
+  color: #d9448f;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* SECTION */
+.section {
+  display: none;
+  padding: 40px 20px;
+}
+
+.active {
+  display: block;
+}
+
+.fade {
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* BUTTON */
+button {
+  padding: 12px 25px;
+  background: #d9448f;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* FOTO POLAROID */
+img {
+  width: 220px;
+  margin: 15px;
+  background: white;
+  padding: 10px 10px 25px 10px;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+img:hover {
+  transform: scale(1.05) rotate(-1deg);
+}
+
+/* GALERI */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  cursor: pointer;
+}
+
+/* MODAL */
+#modal {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+#modal img {
+  max-width:90%;
+  max-height:90%;
+  border-radius:15px;
+}
+
+/* BUNGA JATUH */
+.flower {
+  position: fixed;
+  top: -50px;
+  font-size: 24px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+/* ENVELOPE */
+#envelope {
+  position: fixed;
+  width: 220px;
+  height: 150px;
+  background: #ffb6c1;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ff85a2;
+  clip-path: polygon(0 0, 100% 0, 50% 50%);
+  transform-origin: top;
+  transition: transform 1s;
+  z-index: 2;
+}
+
+.letter {
+  position: absolute;
+  width: 90%;
+  height: 120px;
+  background: white;
+  left: 5%;
+  top: 30%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #d63384;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
+  transform: translateY(100%);
+  transition: transform 1s ease;
+}
+
+.letter.open {
+  transform: translateY(-60%);
+}
+
+.hint {
+  position: absolute;
+  bottom: -30px;
+  width: 100%;
+  color: #d63384;
+  font-size: 14px;
+}
+
+/* MARUKO */
+.maruko-envelope {
+  width: 90px;
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  animation: marukoFloat 3s ease-in-out infinite;
+}
+
+@keyframes marukoFloat {
+  0% { transform: translateX(-50%) translateY(0px); }
+  50% { transform: translateX(-50%) translateY(-8px); }
+  100% { transform: translateX(-50%) translateY(0px); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- AUDIO -->
+<audio id="music" loop>
+  <source src="Lagu.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ENVELOPE -->
+<div id="envelope" onclick="openEnvelope()">
+
+  <div class="flap"></div>
+
+  <!-- MARUKO -->
+  <img src="imagesmaruko.png" class="maruko-envelope">
+
+  <!-- SURAT -->
+  <div class="letter" id="letter">
+    <p>Untuk Babee ❤️</p>
+  </div>
+
+  <p class="hint">Klik untuk membuka 🌸</p>
+</div>
+
+<!-- SECTION 1 -->
+<div class="section fade" id="s1">
+  <h1>Hai sayang 🌸</h1>
+
+  <p>
+    Ini bukan cuma website…<br>
+    tapi sedikit cerita tentang Babee,<br>
+    di hidup aku ❤️
+  </p>
+
+  <button onclick="startExperience()">Klik ya ❤️</button>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section fade" id="s2">
+
+  <h2>🌸 Kenangan Kita 🌸</h2>
+
+  <p>
+    Kita ketemu di gunung itu…<br><br>
+
+    dan siapa sangka, dari situ semuanya mulai berubah.<br><br>
+
+    Sampai akhirnya kita balik lagi ke tempat itu,<br>
+    tapi kali ini… sebagai “kita”.
+  </p>
+
+  <img src="imagesfoto1.jpg">
+  <img src="imagesfoto2.jpg">
+
+  <button onclick="next(3)">Lanjut 💖</button>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section fade" id="s3">
+
+  <h2>🌷 Tentang Babee 🌷</h2>
+
+  <p>
+    Babee tuh selalu punya cara buat bikin aku jatuh lagi dan lagi…<br><br>
+
+    Dari gemesnya Babee, cantiknya Babee,<br>
+    baiknya Babee, sampai Babee yang jago masak<br>
+    dan selalu keliatan pinter di mata aku.<br><br>
+
+    Aku juga hafal Babee 😆<br>
+    yang susah disuruh makan<br>
+    dan susah banget buat ga ngelopekin bibir itu 😤<br><br>
+
+    Dan jujur… aku sayang semuanya.
+  </p>
+
+  <button onclick="next(4)">Lanjut lagi 💕</button>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section fade" id="s4">
+
+  <h2>💌 Untuk Babee 💌</h2>
+
+  <p>
+    Kita pernah ngelewatin masa yang nggak gampang lohh,<br>
+    waktu kita harus LDR pas Babee magang…<br><br>
+
+    Tapi dari situ aku makin yakin,<br>
+    kalau Babee memang orang yang mau aku perjuangin.<br><br>
+
+    Di ulang tahun Babee ini…<br><br>
+
+    Aku cuma pengen Babee sehat selalu,<br>
+    skripsinya lancar, sidangnya lancar,<br>
+    dan semua hal baik datang ke Babee 🌸<br><br>
+
+    Semoga Babee tetap jadi Babee:<br>
+    makin gemes, makin cantik,<br>
+    dan makin sayang sama aku 😌
+  </p>
+
+  <button onclick="next(5)">Terakhir ❤️</button>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section fade" id="s5">
+
+  <h1>Happy Birthday Babee ❤️</h1>
+
+  <p>
+    Terima kasih sudah ada…<br><br>
+
+    semoga aku masih terus jadi “Mas”<br>
+    yang Babee pilih ❤️
+  </p>
+
+  <button onclick="next(6)">Lihat ini ya 🌸</button>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section fade" id="s6">
+
+  <h2>🌸 Ini Babee 🌸</h2>
+
+  <p>
+    Dan ini sebagian kecil dari Babee dan kita<br>
+    yang selalu aku sayangg ❤️
+  </p>
+
+  <div class="gallery">
+
+    <img src="imagesf1.jpg" onclick="openModal(this)">
+    <img src="imagesf2.jpg" onclick="openModal(this)">
+    <img src="imagesf3.jpg" onclick="openModal(this)">
+    <img src="imagesf4.jpg" onclick="openModal(this)">
+    <img src="imagesf5.jpg" onclick="openModal(this)">
+    <img src="imagesf6.jpg" onclick="openModal(this)">
+    <img src="imagesf7.jpg" onclick="openModal(this)">
+    <img src="imagesf8.jpg" onclick="openModal(this)">
+    <img src="imagesf9.jpg" onclick="openModal(this)">
+    <img src="imagesf10.jpg" onclick="openModal(this)">
+    <img src="imagesf11.jpg" onclick="openModal(this)">
+    <img src="imagesf12.jpg" onclick="openModal(this)">
+    <img src="imagesf13.jpg" onclick="openModal(this)">
+    <img src="imagesf14.jpg" onclick="openModal(this)">
+    <img src="imagesf15.jpg" onclick="openModal(this)">
+    <img src="imagesf16.jpg" onclick="openModal(this)">
+    <img src="imagesf17.jpg" onclick="openModal(this)">
+    <img src="imagesf18.jpg" onclick="openModal(this)">
+    <img src="imagesf19.jpg" onclick="openModal(this)">
+    <img src="imagesf20.jpg" onclick="openModal(this)">
+    <img src="imagesf21.jpg" onclick="openModal(this)">
+    <img src="imagesf22.jpg" onclick="openModal(this)">
+    <img src="imagesf23.jpg" onclick="openModal(this)">
+    <img src="imagesf24.jpg" onclick="openModal(this)">
+    <img src="imagesf25.jpg" onclick="openModal(this)">
+
+  </div>
+
+  <p style="margin-top:30px;">
+    Dari semua foto ini…<br>
+    nggak ada yang lebih aku suka selain Babee ❤️
+  </p>
+
+</div>
+
+<!-- MODAL -->
+<div id="modal" onclick="closeModal()">
+  <img id="modalImg">
+</div>
+
+<script>
+let musicStarted = false;
+
+/* OPEN ENVELOPE */
+function openEnvelope() {
+
+  const flap = document.querySelector(".flap");
+  const letter = document.getElementById("letter");
+
+  flap.style.transform = "rotateX(180deg)";
+
+  setTimeout(() => {
+    letter.classList.add("open");
+  }, 500);
+
+  setTimeout(() => {
+
+    document.getElementById("envelope").style.display = "none";
+
+    document.getElementById("s1").classList.add("active");
+
+    startMusic();
+
+  }, 1800);
+}
+
+/* MUSIC */
+function startMusic() {
+
+  if (musicStarted) return;
+
+  const music = document.getElementById("music");
+
+  music.volume = 0;
+  music.play();
+
+  let vol = 0;
+
+  let fade = setInterval(() => {
+
+    if (vol < 0.5) {
+
+      vol += 0.02;
+      music.volume = vol;
+
+    } else {
+
+      clearInterval(fade);
+
+    }
+
+  }, 200);
+
+  musicStarted = true;
+}
+
+/* START */
+function startExperience() {
+  next(2);
+}
+
+/* NEXT SECTION */
+function next(n) {
+
+  document
+    .querySelectorAll('.section')
+    .forEach(s => s.classList.remove('active'));
+
+  document
+    .getElementById('s' + n)
+    .classList.add('active');
+}
+
+/* MODAL */
+function openModal(img) {
+
+  document.getElementById("modal").style.display = "flex";
+
+  document.getElementById("modalImg").src = img.src;
+}
+
+function closeModal() {
+
+  document.getElementById("modal").style.display = "none";
+}
+
+/* FLOWER */
+function createFlower() {
+
+  const flower = document.createElement("div");
+
+  flower.classList.add("flower");
+
+  const items = ["🌸","💖","✨"];
+
+  flower.innerHTML =
+    items[Math.floor(Math.random() * items.length)];
+
+  flower.style.left =
+    Math.random() * window.innerWidth + "px";
+
+  flower.style.animationDuration =
+    (3 + Math.random() * 5) + "s";
+
+  document.body.appendChild(flower);
+
+  setTimeout(() => {
+    flower.remove();
+  }, 8000);
+}
+
+setInterval(createFlower, 500);
+
+</script>
+
+</body>
+</html>
